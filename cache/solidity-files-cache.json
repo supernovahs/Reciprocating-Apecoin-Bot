@@ -1,0 +1,397 @@
+{
+  "_format": "ethers-rs-sol-cache-3",
+  "paths": {
+    "artifacts": "out",
+    "sources": "src",
+    "tests": "test",
+    "libraries": [
+      "lib"
+    ]
+  },
+  "files": {
+    "/home/supernovahs/Desktop/Apecoin bot/Reciprocating-Apecoin-Bot/lib/forge-std/lib/ds-test/src/test.sol": {
+      "lastModificationDate": 1652287025185,
+      "contentHash": "82a8604fe648c30a9bd56444368704f0",
+      "sourceName": "lib/forge-std/lib/ds-test/src/test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.5.0",
+      "artifacts": {
+        "DSTest": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "test.sol/DSTest.json"
+        }
+      }
+    },
+    "/home/supernovahs/Desktop/Apecoin bot/Reciprocating-Apecoin-Bot/lib/forge-std/src/Test.sol": {
+      "lastModificationDate": 1652287024265,
+      "contentHash": "5ab1042e2f48572d8317ed14f159682b",
+      "sourceName": "lib/forge-std/src/Test.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol"
+      ],
+      "versionRequirement": ">=0.6.0, <0.9.0",
+      "artifacts": {
+        "Test": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Test.sol/Test.json"
+        },
+        "stdError": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Test.sol/stdError.json"
+        },
+        "stdMath": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Test.sol/stdMath.json"
+        },
+        "stdStorage": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Test.sol/stdStorage.json"
+        }
+      }
+    },
+    "/home/supernovahs/Desktop/Apecoin bot/Reciprocating-Apecoin-Bot/lib/forge-std/src/Vm.sol": {
+      "lastModificationDate": 1652287024265,
+      "contentHash": "8087d2c4edec90c0272b515bc29f4583",
+      "sourceName": "lib/forge-std/src/Vm.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.6.0",
+      "artifacts": {
+        "Vm": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Vm.sol/Vm.json"
+        }
+      }
+    },
+    "/home/supernovahs/Desktop/Apecoin bot/Reciprocating-Apecoin-Bot/lib/forge-std/src/console.sol": {
+      "lastModificationDate": 1652287024265,
+      "contentHash": "100b8a33b917da1147740d7ab8b0ded3",
+      "sourceName": "lib/forge-std/src/console.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.4.22, <0.9.0",
+      "artifacts": {
+        "console": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "console.sol/console.json"
+        }
+      }
+    },
+    "/home/supernovahs/Desktop/Apecoin bot/Reciprocating-Apecoin-Bot/lib/forge-std/src/console2.sol": {
+      "lastModificationDate": 1652287024265,
+      "contentHash": "5df91f8e93efbfcccf68973dc1b74a70",
+      "sourceName": "lib/forge-std/src/console2.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": ">=0.4.22, <0.9.0",
+      "artifacts": {
+        "console2": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "console2.sol/console2.json"
+        }
+      }
+    },
+    "/home/supernovahs/Desktop/Apecoin bot/Reciprocating-Apecoin-Bot/src/Contract.sol": {
+      "lastModificationDate": 1653034116691,
+      "contentHash": "fe5bc136c336ca28d4a84fdc9543b272",
+      "sourceName": "src/Contract.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/console.sol",
+        "src/IERC20Upgradeable.sol",
+        "src/IERC3156Upgradeable.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "FlashBorrower": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Contract.sol/FlashBorrower.json"
+        }
+      }
+    },
+    "/home/supernovahs/Desktop/Apecoin bot/Reciprocating-Apecoin-Bot/src/IERC20Upgradeable.sol": {
+      "lastModificationDate": 1653032491205,
+      "contentHash": "375cd6e1e3afe3421a226fcc80e73f8c",
+      "sourceName": "src/IERC20Upgradeable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC20Upgradeable": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "IERC20Upgradeable.sol/IERC20Upgradeable.json"
+        }
+      }
+    },
+    "/home/supernovahs/Desktop/Apecoin bot/Reciprocating-Apecoin-Bot/src/IERC3156Upgradeable.sol": {
+      "lastModificationDate": 1653032443928,
+      "contentHash": "3975fd3f2717baa973585916ff31f8bc",
+      "sourceName": "src/IERC3156Upgradeable.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "IERC3156FlashBorrowerUpgradeable": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "IERC3156Upgradeable.sol/IERC3156FlashBorrowerUpgradeable.json"
+        },
+        "IERC3156FlashLenderUpgradeable": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "IERC3156Upgradeable.sol/IERC3156FlashLenderUpgradeable.json"
+        }
+      }
+    },
+    "/home/supernovahs/Desktop/Apecoin bot/Reciprocating-Apecoin-Bot/test/Contract.t.sol": {
+      "lastModificationDate": 1653034515257,
+      "contentHash": "7e02d97ed2904cba1eb2892faaece010",
+      "sourceName": "test/Contract.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "bytecodeHash": "ipfs"
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ]
+            }
+          },
+          "evmVersion": "london"
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "src/Contract.sol",
+        "src/IERC20Upgradeable.sol",
+        "src/IERC3156Upgradeable.sol"
+      ],
+      "versionRequirement": "^0.8.0",
+      "artifacts": {
+        "AirdropGrapesToken": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Contract.t.sol/AirdropGrapesToken.json"
+        },
+        "ContractTest": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Contract.t.sol/ContractTest.json"
+        },
+        "IERC20": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Contract.t.sol/IERC20.json"
+        },
+        "IUniswapV2Pair": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Contract.t.sol/IUniswapV2Pair.json"
+        },
+        "SafeMathUniswap": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Contract.t.sol/SafeMathUniswap.json"
+        },
+        "Sushiswap": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Contract.t.sol/Sushiswap.json"
+        },
+        "UniswapV2Library": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Contract.t.sol/UniswapV2Library.json"
+        },
+        "nftxvault": {
+          "0.8.13+commit.abaa5c0e.Linux.gcc": "Contract.t.sol/nftxvault.json"
+        }
+      }
+    }
+  }
+}

